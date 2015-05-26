@@ -16,11 +16,11 @@ sed \
   -e "/insert-api/ r module/api.js" \
   -e "/insert-helpers/ r module/helpers.js" \
   -e "/insert-vars/ r module/vars.js" \
-  -e "/insert-methods/ r module/methods.js" <skeleton.js>quick-tester-temp.js
+  -e "/insert-methods/ r module/methods.js" <skeleton.js>aIV-quick-tester-temp.js
 cd ..
-cp -u pre-compiled-tester/quick-tester-temp.js quick-tester.js
-rm -f pre-compiled-tester/quick-tester-temp.js
-sed -i "s/^\/\/ insert-[a-zA-Z0-9\-]*//" quick-tester.js
+cp -u pre-compiled-tester/aIV-quick-tester-temp.js aIV-quick-tester.js
+rm -f pre-compiled-tester/aIV-quick-tester-temp.js
+sed -i "s/^\/\/ insert-[a-zA-Z0-9\-]*//" aIV-quick-tester.js
 rm -f sed*
 
 ## MS-DOS Commands
@@ -31,9 +31,9 @@ sed ^
   -e "/insert-api/ r module/api.js" ^
   -e "/insert-helpers/ r module/helpers.js" ^
   -e "/insert-vars/ r module/vars.js" ^
-  -e "/insert-methods/ r module/methods.js" <skeleton.js>quick-tester-temp.js
+  -e "/insert-methods/ r module/methods.js" <skeleton.js>aIV-quick-tester-temp.js
 cd ..
-copy /y pre-compiled-tester\quick-tester-temp.js quick-tester.js
-del /f pre-compiled-tester\quick-tester-temp.js
-sed -i "s/^\/\/ insert-[a-zA-Z0-9\-]*//" quick-tester.js
+copy /y pre-compiled-tester\aIV-quick-tester-temp.js aIV-quick-tester.js
+del /f pre-compiled-tester\aIV-quick-tester-temp.js
+sed -i "s/^\/\/ insert-[a-zA-Z0-9\-]*//" aIV-quick-tester.js
 del /f sed*
