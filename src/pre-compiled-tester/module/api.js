@@ -58,7 +58,10 @@
         tests[ testIndex ]();
       }
       catch(error) {
-        recordError( error.toString() );
+        errorMsg = error.name + ': ' + error.message;
+        recordError(errorMsg);
+        errorMsg += '; STACK TRACE: %O';
+        console.error(errorMsg, error.stack);
       }
     }
 
