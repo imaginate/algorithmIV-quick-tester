@@ -1,0 +1,41 @@
+MINIFY COMMANDS                                                |
+-------------------------------------------------------------- |
+Requirements:                                                  |
+GNU Sed (http://www.gnu.org/software/sed/)                     |
+Java (http://www.oracle.com/technetwork/java/javase/overview/) |
+-------------------------------------------------------------- |
+Input File: src/aIV-quick-tester.js                            |
+Output File: src/aIV-quick-tester.min.js                       |
+----------------------------------------------------------------
+
+## UNIX Commands
+sed "3,16 d;18,49 d" <src/aIV-quick-tester.js>compile/aIV-quick-tester.js
+cd compile
+java \
+  -jar minifier.jar \
+  --js aIV-quick-tester.js \
+  --js_output_file aIV-quick-tester.min.js
+rm -f aIV-quick-tester.js
+cd ..
+sed \
+  -e "1 r src/pre-compiled-tester/dependencies/algorithmIV-utils.min.js" \
+  -e "s/ blank line \*\///" \
+  -e "2 r compile/copyright.txt" \
+  -e "1 d" <compile/aIV-quick-tester.min.js>src/aIV-quick-tester.min.js
+rm -f compile/aIV-quick-tester.min.js
+
+## MS-DOS Commands
+sed "3,16 d;18,49 d" <src\aIV-quick-tester.js>compile\aIV-quick-tester.js
+cd compile
+java ^
+  -jar minifier.jar ^
+  --js aIV-quick-tester.js ^
+  --js_output_file aIV-quick-tester.min.js
+del /f aIV-quick-tester.js
+cd ..
+sed ^
+  -e "1 r src\pre-compiled-tester\dependencies\algorithmIV-utils.min.js" ^
+  -e "s/ blank line \*\///" ^
+  -e "2 r compile\copyright.txt" ^
+  -e "1 d" <compile\aIV-quick-tester.min.js>src\aIV-quick-tester.min.js
+del /f compile\aIV-quick-tester.min.js
