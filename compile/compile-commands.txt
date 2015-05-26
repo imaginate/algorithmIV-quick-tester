@@ -1,0 +1,37 @@
+COMPILE COMMANDS                              |
+--------------------------------------------- |
+Requirements:                                 |
+GNU Sed (http://www.gnu.org/software/sed/)    |
+--------------------------------------------- |
+Input Folder: pre-compiled-tester/            |
+Outline: pre-compiled-tester/skeleton.js      |
+Output: quick-tester.js                       |
+-----------------------------------------------
+
+## UNIX Commands
+cd pre-compiled-tester
+sed \
+  -e "/insert-public-api/ r public-api.js" \
+  -e "/insert-module-api/ r module-api.js" \
+  -e "/insert-module-helpers/ r module-helpers.js" \
+  -e "/insert-module-vars/ r module-vars.js" \
+  -e "/insert-module-methods/ r module-methods.js" <skeleton.js>quick-tester-temp.js
+cd ..
+cp -u pre-compiled-tester/quick-tester-temp.js quick-tester.js
+rm -f pre-compiled-tester/quick-tester-temp.js
+sed -i "s/^\/\/ insert-[a-zA-Z0-9\-]*//" quick-tester.js
+rm -f sed*
+
+## MS-DOS Commands
+cd pre-compiled-tester
+sed ^
+  -e "/insert-public-api/ r public-api.js" ^
+  -e "/insert-module-api/ r module-api.js" ^
+  -e "/insert-module-helpers/ r module-helpers.js" ^
+  -e "/insert-module-vars/ r module-vars.js" ^
+  -e "/insert-module-methods/ r module-methods.js" <skeleton.js>quick-tester-temp.js
+cd ..
+copy /y pre-compiled-tester\quick-tester-temp.js quick-tester.js
+del /f pre-compiled-tester\quick-tester-temp.js
+sed -i "s/^\/\/ insert-[a-zA-Z0-9\-]*//" quick-tester.js
+del /f sed*
