@@ -5,7 +5,7 @@
  * @file A JavaScript module used to run quick unit tests with minimal overhead.
  * @module aIVTester
  * @version 0.0.1
- * @author Adam Smith {@link adamsmith@youlum.com}
+ * @author Adam Smith [adamsmith@youlum.com]{@link mailto:adamsmith@youlum.com}
  * @copyright 2015 Adam A Smith [github.com/imaginate]{@link https://github.com/imaginate}
  * @license The Apache License [algorithmiv.com/docs/license]{@link http://algorithmiv.com/docs/license}
  * @desc Details about the used annotations:
@@ -14,10 +14,19 @@
  */
 
 ////////////////////////////////////////////////////////////////////////////////
+// The Dependencies
+////////////////////////////////////////////////////////////////////////////////
+
+/* -----------------------------------------------------------------------------
+ * Algorithm IV JavaScript Shortcuts (dependencies/algorithmIV-utils.min.js)
+ * -------------------------------------------------------------------------- */
+// insert-aIV-utils
+
+////////////////////////////////////////////////////////////////////////////////
 // The Public API
 ////////////////////////////////////////////////////////////////////////////////
 
-;(function setupTheTesterPublicAPI(testerModuleAPI, undefined) {
+(function setupTheTesterPublicAPI(testerModuleAPI, undefined) {
   "use strict";
 
 /* -----------------------------------------------------------------------------
