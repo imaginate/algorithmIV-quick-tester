@@ -70,6 +70,16 @@ new TypeError(a);return!0}}();e.reset=function(){var b,a,c;b=(b=arguments.length
 
   /**
    * ---------------------------------------------------
+   * Global Property (aIV.tester)
+   * ---------------------------------------------------
+   * @desc Holds the Quick Tester API.
+   * @struct
+   * @global
+   */
+  aIV.tester = {};
+
+  /**
+   * ---------------------------------------------------
    * Global Method (aIV.tester.runTests)
    * ---------------------------------------------------
    * @desc Runs the tests given to aIV.tester.
@@ -165,7 +175,10 @@ new TypeError(a);return!0}}();e.reset=function(){var b,a,c;b=(b=arguments.length
         tests[ testIndex ]();
       }
       catch(error) {
-        recordError( error.toString() );
+        errorMsg = error.name + ': ' + error.message;
+        recordError(errorMsg);
+        errorMsg += '; STACK TRACE: %O';
+        console.error(errorMsg, error.stack);
       }
     }
 
@@ -362,7 +375,7 @@ new TypeError(a);return!0}}();e.reset=function(){var b,a,c;b=(b=arguments.length
    * @param {string} errorMsg - The error message.
    */
   function recordError(errorMsg) {
-    results[ testIndex ].errors.push(recordError);
+    results[ testIndex ].errors.push(errorMsg);
   }
 
   /**
@@ -378,7 +391,7 @@ new TypeError(a);return!0}}();e.reset=function(){var b,a,c;b=(b=arguments.length
   function showResults(startIndex, endIndex) {
 
     /** @type {string} */
-    var results;
+    var result;
     /** @type {boolean} */
     var pass;
     /** @type {boolean} */
@@ -389,43 +402,43 @@ new TypeError(a);return!0}}();e.reset=function(){var b,a,c;b=(b=arguments.length
     var i;
 
     // Show the results
-    results = '<h2>Results</h2>';
-    results += '<ol id="results">';
+    result = '<h2>Results</h2>';
+    result += '<ol id="results">';
 
     fail = false;
     len = endIndex + 1;
     i = startIndex - 1;
     while (++i < len) {
       pass = !!results[i].errors.length;
-      results += getResultHtmlString(results[i].title, pass);
-      if (!pass) {
+      result += getResultHtmlString(results[i].title, pass);
+      if (pass) {
         fail = true;
       }
     }
 
-    results += '</ol>';
+    result += '</ol>';
 
     // Show the errors
     if (fail) {
-      results += '<h2>Errors</h2>';
-      results += '<ol id="errors">';
+      result += '<h2>Errors</h2>';
+      result += '<ol id="errors">';
 
       i = startIndex - 1;
       while (++i < len) {
         pass = !!results[i].errors.length;
-        if (!pass) {
-          results += getErrorHtmlString(results[i].title, results[i].errors);
+        if (pass) {
+          result += getErrorHtmlString(results[i].title, results[i].errors);
         }
       }
 
-      results += '</ol>';
+      result += '</ol>';
     }
 
     // Update the UI with the results
     elems.ui.style.opacity = '0';
 
     setTimeout(function() {
-      elems.ui.innerHTML = results;
+      elems.ui.innerHTML = result;
       elems.ui.style.opacity = '1';
     }, 500);
   }
@@ -447,7 +460,7 @@ new TypeError(a);return!0}}();e.reset=function(){var b,a,c;b=(b=arguments.length
     var result;
 
     classname = (hasError) ? 'red' : 'green';
-    result = (hasError) ? 'Pass' : 'Fail';
+    result = (hasError) ? 'Fail' : 'Pass';
 
     result = '<li class="' + classname + '">' +
               title + ' =&gt; ' + result + '</li>';
