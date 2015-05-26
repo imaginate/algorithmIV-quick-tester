@@ -10,6 +10,16 @@
 
   /**
    * ---------------------------------------------------
+   * Global Property (aIV.tester)
+   * ---------------------------------------------------
+   * @desc Holds the Quick Tester API.
+   * @struct
+   * @global
+   */
+  aIV.tester = {};
+
+  /**
+   * ---------------------------------------------------
    * Global Method (aIV.tester.runTests)
    * ---------------------------------------------------
    * @desc Runs the tests given to aIV.tester.
